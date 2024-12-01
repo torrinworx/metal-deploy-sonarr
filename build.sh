@@ -8,12 +8,12 @@ apt install -y curl sqlite3
 arch=$(dpkg --print-architecture)
 case $arch in
 	amd64) arch="x64" ;;
-	arm|armf|armh) arch="arm" ;;
+	arm|armf|armhf) arch="arm" ;;
 	arm64) arch="arm64" ;;
 	*) echo "Unsupported architecture: $arch" && exit 1 ;;
 esac
 
-wget --content-disposition "http://sonarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=$arch" -O ./Sonarr.tar.gz
+wget --content-disposition "https://services.sonarr.tv/v1/download/main/latest?version=4&os=linux&arch=$arch" -O ./Sonarr.tar.gz
 tar -xvzf ./Sonarr.tar.gz -C ./
 
 mkdir -p ./build/
